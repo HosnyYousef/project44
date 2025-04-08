@@ -6,7 +6,7 @@ Use CRUD functionality to manage a list of:
 • Optional user login to personalize the list.
 
 —-
- 
+
 Reading Tracker API → CRUD Version
 
 🔁 CRUD Flow:
