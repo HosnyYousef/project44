@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- When we see 'items', that's our array of data (from the server.js get request) holding all our objects, that came from the mongodb database -->
+    <h1>Todo List: </h1>
+    <ul class="todoItems">
+    <% for(let i=0; i < items.length; i++) {%>
+<!-- how many time is this forLoop going to run? As many times there are objects in the database (three for example) -->
+<!-- each time it runs, i++ will increase -->
+<!-- where can we look to find the first object that will be in our array? MongoDB -->
+        <li class="item">
+            <% if(items[i].completed === true) {%>
+                <span class='completed'><%= items[i].thing %></span>
+<!-- if items[i].completed is true, we want the span to have the completed class -->
+    <!-- we're changing classes with conditional -->
+    <!-- if false, give me a span <span><%= items[i].thing %></span> -->
+<!-- If you check CSS, completed class has a striked out linethrough -->
+            <% }else{ %>
+                <span><%= items[i].thing %></span>
+<!-- items[i].thing: look right here, zero thing would give us... "Get Oat Milk" from MongoDB -->
+        <!-- (can't screenshort, so) this is what the database looks like in mongoDB: _id: objectid"numbers"", thing: "Get Oat Milk", completed: false -->
+             <!-- we made up/chose the name "thing" property, not the best naming convension -->
+<!-- we are keeping track of whether the task was completed or not through the database by changing "completed: false" to "completed: true", which would be hard to keep track of if we're doing all this client side (without a backend) -->
+        <!-- What type of request to our servers is going to handle this competed? our 'put' or our 'update'  -->
+<!-- <span><%= items[i].thing %></span>: with <span> is what is allowing us to see it in the display view on the page as a one of the listed items -->
+<!-- <%= items[i].thing %>: starts count at 0, and loops as many objects that are in the database, because of the ForLoop (for(let i=0; i < items.length; i++)) -->
+    <!-- e.g.: <%= items[0].thing %>, <%= items[1].thing %>, <%= items[2].thing %> -->
+            <% } %>    
+            <span class='fa fa-trash'></span>
+<!-- Interestingly, we have to go from this span of trashcan thing that's being clicked to the text that was inside the span -->
+  <!-- the trashcan, up to the <li> (<li class="item">) and into the child to get the text (<%= items[i].thing %>) that exists there -->
+        </li>
+    <% } %>
+    </ul>
+<!--  -->
+<!--  -->
+    <h2>Left to do: <%= left %></h2>
+
+    <h2>Add A Todo:</h2>
+
+    <form action="/addTodo" method="POST">
+        <input type="text" placeholder="Thing To Do" name="todoItem">
+        <input type="submit">
+    </form>
+<!-- when we click submit, we make a post request to the server, so it leaves the client side and goest to my server side. On the server is my API code. Part of that API code was an app.post()  -->
+<!-- Where does the route for the post come from? this is the route: action="/addTodo" -->
+<!-- How can I differentiate between all the different inputs that may be in a form? This is how: name="todoItem". By looking at their names (names on the input)  -->
+    <!-- we're going to look for req.body.todoItem, coffee (if that's what we input for example) -->
+        <!-- in the todoItem input would be coffee -->
+<!-- with submitting and triggering action="/addTodo" we made a post request app.post('/addToDo') -->
+    <!-- the smurf is going to grab the value of coffee -->
+     <!-- then it's going add it to the database -->
+      <!-- then we're going to respond by saying everything will be okay, so you should refresh -->
+       <!-- when it refreshes, what kind of request will we make? a get request -->
+        <!-- get request is going to go to the database, it's going to show the doucments in the database, including the new one added -->
+
+    <script src='js/main.js'></script>
+<!-- when we see this, we know that there's somethign that might have been listening for that click on that span inside that li that we clicked on the client side-->
+ <!-- We can start by looking at the JavaScript file -->
+<!-- since we are using express, where is it likely that this JavaScript file exists? -->
+<!-- It's going to be in our public folder, so we don't have to hand code a route. We just through it in the public folder and express magically handles all of it -->
+<!-- we can see in our public folder here, I have a JS folder which is the path that says go into the js folder -->
+<!-- 'js/main.js', this means find the public, find the JS folder, and then find the main.js -->
+</body>
+</html>
