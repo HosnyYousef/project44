@@ -8,7 +8,7 @@ require('dotenv').config()
 
 let db,
     dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+    dbName = 'movietracker'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
@@ -23,9 +23,9 @@ app.use(express.json())
 
 app.get('/',async (request, response)=>{
 
-    db.collection('todos').find().toArray()
+    db.collection('movies').find().toArray()
     .then(data => {
-        db.collection('todos').countDocuments({completed: false})
+        db.collection('movies').countDocuments({completed: false})
         .then(itemsLeft => {
             response.render('index.ejs', { items: data, left: itemsLeft })
         })
@@ -33,11 +33,11 @@ app.get('/',async (request, response)=>{
     .catch(error => console.error(error))
 })
 
-app.post('/addTodo', (request, response) => {
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
+app.post('/addfilm', (request, response) => {
+    db.collection('movies').insertOne({thing: request.body.filmItem, completed: false})
 
     .then(result => {
-        console.log('Todo Added')
+        console.log('film Added')
         response.redirect('/')
 
     })
@@ -46,7 +46,7 @@ app.post('/addTodo', (request, response) => {
 })
 
 app.put('/markComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+    db.collection('movies').updateOne({thing: request.body.itemFromJS},{
         $set: {
             completed: true
           }
@@ -66,7 +66,7 @@ app.put('/markComplete', (request, response) => {
 
 
 app.put('/markUnComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+    db.collection('movies').updateOne({thing: request.body.itemFromJS},{
         $set: {
             completed: false
           }
@@ -83,11 +83,11 @@ app.put('/markUnComplete', (request, response) => {
 })
 
 app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
+    db.collection('movies').deleteOne({thing: request.body.itemFromJS})
 
     .then(result => {
-        console.log('Todo Deleted')
-        response.json('Todo Deleted')
+        console.log('film Deleted')
+        response.json('film Deleted')
 
     })
     .catch(error => console.error(error))
