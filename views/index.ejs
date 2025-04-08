@@ -18,7 +18,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
+    <h1>Movie Tracker: </h1>
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
@@ -31,12 +31,12 @@
         </li>
     <% } %>
     </ul>
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to watch: <%= left %></h2>
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Movie:</h2>
 
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+        <input type="text" placeholder="Movie to Watch" name="todoItem">
         <input type="submit">
     </form>
 
