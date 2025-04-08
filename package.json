@@ -1,0 +1,26 @@
+{
+  "name": "project44",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HosnyYousef/project44.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HosnyYousef/project44/issues"
+  },
+  "homepage": "https://github.com/HosnyYousef/project44#readme",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongodb": "^6.15.0"
+  }
+}
