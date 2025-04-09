@@ -21,7 +21,7 @@
 
 <body>
     <h1>Movie Tracker: </h1>
-    <ul class="filmItems">
+    <ul class="filmTitles">
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -38,7 +38,8 @@
     <h2>Add A Movie:</h2>
 
     <form action="/addfilm" method="POST">
-        <input type="text" placeholder="Movie to Watch" name="filmItem">
+        <input type="text" placeholder="Movie to Watch" name="filmTitle">
+        <input type="text" placeholder="Progress" name="filmProgress">
         <input type="submit">
     </form>
 

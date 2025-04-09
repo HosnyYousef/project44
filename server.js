@@ -34,7 +34,7 @@ app.get('/',async (request, response)=>{
 })
 
 app.post('/addfilm', (request, response) => {
-    db.collection('movies').insertOne({thing: request.body.filmItem, completed: false})
+    db.collection('movies').insertOne({thing: request.body.filmTitle, progress: request.body.filmProgress, completed: false})
 
     .then(result => {
         console.log('film Added')
@@ -46,7 +46,7 @@ app.post('/addfilm', (request, response) => {
 })
 
 app.put('/markComplete', (request, response) => {
-    db.collection('movies').updateOne({thing: request.body.itemFromJS},{
+    db.collection('movies').updateOne({thing: request.body.itemFromJS, progress: request.body.filmProgress},{
         $set: {
             completed: true
           }

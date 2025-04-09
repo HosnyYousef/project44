@@ -11,7 +11,7 @@ Reading Tracker API → CRUD Version
 
 🔁 CRUD Flow:
 
-• Create reading logs
+• Create reading logs 
 • Read progress/book list
 • Update current page/status
 • Delete finished/abandoned books
