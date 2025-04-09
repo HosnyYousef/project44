@@ -43,7 +43,7 @@ app.post('/addfilm', (request, response) => {
 })
 
 app.put('/markComplete', (request, response) => {
-    db.collection('movies').updateOne({thing: request.body.itemFromJS, progress: request.body.filmProgress},{
+    db.collection('movies').updateOne({thing: request.body.itemFromJS, progress: request.body.filmProgressJS},{
         $set: {
             completed: true
           }
@@ -63,7 +63,7 @@ app.put('/markComplete', (request, response) => {
 
 
 app.put('/markUnComplete', (request, response) => {
-    db.collection('movies').updateOne({thing: request.body.itemFromJS},{
+    db.collection('movies').updateOne({thing: request.body.itemFromJS, progress: request.body.filmProgress},{
         $set: {
             completed: false
           }
@@ -76,16 +76,13 @@ app.put('/markUnComplete', (request, response) => {
         response.json('Marked Complete')
     })
     .catch(error => console.error(error))
-
 })
 
 app.delete('/deleteItem', (request, response) => {
     db.collection('movies').deleteOne({thing: request.body.itemFromJS})
-
     .then(result => {
         console.log('film Deleted')
         response.json('film Deleted')
-
     })
     .catch(error => console.error(error))
 })
