@@ -58,12 +58,14 @@ async function markComplete(){
 
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
+    const progText = this.parentNode.childNodes[3].innerText
     try{
         const response = await fetch('markUnComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                'itemFromJS': itemText
+                'itemFromJS': itemText,
+                'filmProgressJS': progText
             })
           })
         const data = await response.json()
