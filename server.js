@@ -35,13 +35,10 @@ app.get('/',async (request, response)=>{
 
 app.post('/addfilm', (request, response) => {
     db.collection('movies').insertOne({thing: request.body.filmTitle, progress: request.body.filmProgress, completed: false})
-
     .then(result => {
         console.log('film Added')
         response.redirect('/')
-
     })
-
     .catch(error => console.error(error))
 })
 
