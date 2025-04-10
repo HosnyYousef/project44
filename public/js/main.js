@@ -10,7 +10,7 @@ Array.from(deleteBtn).forEach((element)=>{
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })
-Array.from(itemCompleted).forEach((element)=>{
+Array.from(item).forEach((element) => {
     element.addEventListener('click', markUnComplete)
 })
 
