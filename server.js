@@ -36,7 +36,7 @@ app.get('/',async (request, response)=>{
 app.post('/addfilm', (request, response) => {
     db.collection('movies').insertOne({thing: request.body.filmTitle, progress: request.body.filmProgress, completed: false})
     .then(result => {
-        console.log('film Added')
+        console.log('Film Added')
         response.redirect('/')
     })
     .catch(error => console.error(error))
@@ -51,7 +51,6 @@ app.put('/markComplete', (request, response) => {
     },{
         sort: {_id: -1},
         upsert: false
-
     })
     .then(result => {
         console.log('Marked Complete')
@@ -61,9 +60,8 @@ app.put('/markComplete', (request, response) => {
     .catch(error => console.error(error))
 })
 
-
 app.put('/markUnComplete', (request, response) => {
-    db.collection('movies').updateOne({thing: request.body.itemFromJS, progress: request.body.filmProgress},{
+    db.collection('movies').updateOne({thing: request.body.itemFromJS, progress: request.body.filmProgressJS},{
         $set: {
             completed: false
           }
@@ -79,9 +77,9 @@ app.put('/markUnComplete', (request, response) => {
 })
 
 app.delete('/deleteItem', (request, response) => {
-    db.collection('movies').deleteOne({thing: request.body.itemFromJS})
+    db.collection('movies').deleteOne({thing: request.body.itemFromJS, progress: request.body.filmProgressJS})
     .then(result => {
-        console.log('film Deleted')
+        console.log('Film Deleted')
         response.json('film Deleted')
     })
     .catch(error => console.error(error))
@@ -90,4 +88,3 @@ app.delete('/deleteItem', (request, response) => {
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
-
